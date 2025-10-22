@@ -31,11 +31,6 @@ export default function PrivacyPolicy() {
             Your interactions with the AI are sent to our backend for processing, but these requests are anonymous and not linked to any personal identifiers. We do not log or store the content of your queries on our servers after the response is sent back to you.
           </p>
 
-          <h2 className="text-xl font-semibold text-foreground pt-4">4. White-Label Clients</h2>
-          <p>
-            This privacy policy applies to the demonstration version of this application. If you are using a white-labeled version of this service provided by one of our clients, please refer to their specific privacy policy.
-          </p>
-
           <div className="text-center pt-8">
             <Button asChild>
               <Link href="/">Return to Home</Link>

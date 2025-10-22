@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'WhiteLabel AI Advisor',
+  title: 'AskQuora',
   description: 'Expert Consultations, Absolute Privacy.',
 };
 

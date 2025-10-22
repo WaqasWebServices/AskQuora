@@ -13,12 +13,12 @@ export default function AdminPage() {
           </div>
           <CardTitle className="text-3xl font-bold mt-4">Admin Panel</CardTitle>
           <CardDescription>
-            This is the control center for your white-labeled AI application.
+            This is the control center for your AI application.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 text-muted-foreground">
           <p>
-            Features like traffic analytics, content management, branding customization, and AI API configuration would be available here for our white-label customers.
+            Features like traffic analytics, content management, branding customization, and AI API configuration are available here.
           </p>
           <p>
             This panel allows for full administrative control, ensuring brand consistency and data privacy.

@@ -137,7 +137,7 @@ export default function ClientPage() {
           <Link href="/" className="flex items-center gap-2">
             <AppLogo className="h-8 w-8 text-primary" />
             <span className="text-lg font-bold tracking-tight">
-              WhiteLabel AI Advisor
+              AskQuora
             </span>
           </Link>
           <p className="text-sm text-muted-foreground hidden md:block">
@@ -319,33 +319,12 @@ export default function ClientPage() {
               </Button>
             </div>
           </section>
-
-          <section id="white-label" className="mt-12 md:mt-20">
-             <Card className="max-w-4xl mx-auto bg-card/50">
-               <CardHeader className="text-center">
-                 <CardTitle className="text-2xl font-bold">A Fully White-Label Solution</CardTitle>
-                 <CardDescription>
-                   For Businesses Seeking Private, On-Brand AI Solutions
-                 </CardDescription>
-               </CardHeader>
-               <CardContent className="text-center text-muted-foreground space-y-4">
-                 <p>
-                  This application is a demonstration of a 100% white-label platform. Your business can deploy this entire system with your own branding, consultant types, and AI models.
-                 </p>
-                 <p>
-                  Provide your users with secure, private AI consultations without any third-party branding. Manage everything from a comprehensive admin panel.
-                 </p>
-                 <Button>Learn More About White-Labeling</Button>
-               </CardContent>
-             </Card>
-          </section>
-
         </div>
       </main>
 
       <footer className="border-t">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4 md:px-6 py-6 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} WhiteLabel AI Advisor. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} AskQuora. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
             <Link href="/admin" className="hover:text-foreground">Admin Login</Link>
