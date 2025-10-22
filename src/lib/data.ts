@@ -114,4 +114,9 @@ export const aiModels: AIModel[] = [
     name: "Zara",
     bio: "The Energetic Motivator. Ideal for Fitness, Quick Advice.",
   },
+  {
+    id: "anya",
+    name: "Dr. Anya Sharma",
+    bio: "The Scholarly Sage. Excels in academic and technical queries.",
+  },
 ];

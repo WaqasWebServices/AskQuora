@@ -29,6 +29,12 @@
       "description": "Avatar for Zara, the energetic motivator.",
       "imageUrl": "https://images.unsplash.com/photo-1711645169736-53327e726205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYxMTQ2NDMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "woman smiling"
+    },
+    {
+      "id": "anya-avatar",
+      "description": "Avatar for Dr. Anya Sharma, the scholarly sage.",
+      "imageUrl": "https://images.unsplash.com/photo-1584727774455-ccd838144b3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzY2hvbGFyJTIwd29tYW58ZW58MHx8fHwxNzYxMTUwOTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "scholar woman"
     }
   ]
 }
