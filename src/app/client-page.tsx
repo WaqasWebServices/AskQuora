@@ -12,6 +12,7 @@ import {
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { getAIResponse } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
+import { useSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,7 @@ export default function ClientPage() {
   const [isReplying, setIsReplying] = useState(false);
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const playClickSound = useSound("/sounds/button-click.mp3");
 
   useEffect(() => {
     try {
@@ -81,6 +83,7 @@ export default function ClientPage() {
       });
       return;
     }
+    playClickSound();
 
     const newUserMessage: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, newUserMessage]);
@@ -112,6 +115,7 @@ export default function ClientPage() {
   };
   
   const handleClearHistory = () => {
+    playClickSound();
     setMessages([]);
     localStorage.removeItem("chatHistory");
     toast({
@@ -162,24 +166,27 @@ export default function ClientPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-center">
               1. Select a Consultant Mode
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mt-8">
               {consultantModes.map((mode) => (
                 <Card
                   key={mode.id}
-                  onClick={() => setSelectedConsultant(mode)}
+                  onClick={() => {
+                    setSelectedConsultant(mode);
+                    playClickSound();
+                  }}
                   className={cn(
                     "cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1",
                     selectedConsultant?.id === mode.id &&
                       "ring-2 ring-primary shadow-lg"
                   )}
                 >
-                  <CardHeader className="items-center text-center">
+                  <CardHeader className="items-center text-center p-4">
                     <div className="p-3 rounded-full bg-primary/20 text-primary">
-                      {React.createElement(mode.icon, { className: "h-8 w-8" })}
+                      {React.createElement(mode.icon, { className: "h-6 w-6 sm:h-8 sm:w-8" })}
                     </div>
-                    <CardTitle className="mt-2 text-base">{mode.name}</CardTitle>
+                    <CardTitle className="mt-2 text-sm sm:text-base">{mode.name}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-4 pt-0">
                     <p className="text-xs text-center text-muted-foreground">
                       {mode.description}
                     </p>
@@ -193,24 +200,27 @@ export default function ClientPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-center">
               2. Choose Your AI's Personality
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 mt-8">
               {aiModels.map((model) => (
                 <Card
                   key={model.id}
-                  onClick={() => setSelectedModel(model)}
+                  onClick={() => {
+                    setSelectedModel(model);
+                    playClickSound();
+                  }}
                   className={cn(
                     "cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1",
                     selectedModel?.id === model.id && "ring-2 ring-primary shadow-lg"
                   )}
                 >
-                  <CardHeader className="items-center text-center">
-                    <Avatar className="h-20 w-20">
+                  <CardHeader className="items-center text-center p-4">
+                    <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
                       <AvatarImage src={getAvatarUrl(model.id)} alt={model.name} data-ai-hint={getAvatarHint(model.id)} />
                       <AvatarFallback>{model.name.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <CardTitle className="mt-2 text-base">{model.name}</CardTitle>
+                    <CardTitle className="mt-2 text-sm sm:text-base">{model.name}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-4 pt-0">
                     <p className="text-xs text-center text-muted-foreground">
                       {model.bio}
                     </p>
@@ -224,12 +234,12 @@ export default function ClientPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">3. Start Chatting</h2>
             <p className="text-center text-muted-foreground">Your conversation is private and anonymous.</p>
             <Card className="mt-8 max-w-4xl mx-auto shadow-2xl">
-              <CardContent className="p-2 md:p-4">
-                <div className="flex flex-col h-[60vh]">
+              <CardContent className="p-0 sm:p-2 md:p-4">
+                <div className="flex flex-col h-[70vh] sm:h-[60vh]">
                   <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
                     <div className="space-y-6">
                       {messages.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
+                        <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground p-4">
                           <Sparkles className="h-10 w-10 mb-4" />
                           <p className="text-lg font-medium">Your private conversation begins here.</p>
                           <p>Select a mode and personality, then ask your first question.</p>
@@ -239,7 +249,7 @@ export default function ClientPage() {
                           <div
                             key={index}
                             className={cn(
-                              "flex items-start gap-4 animate-in fade-in",
+                              "flex items-start gap-2 sm:gap-4 animate-in fade-in",
                               message.role === "user" && "justify-end"
                             )}
                           >
@@ -251,7 +261,7 @@ export default function ClientPage() {
                             )}
                             <div
                               className={cn(
-                                "max-w-md lg:max-w-xl rounded-xl p-3 px-4 shadow-sm break-words",
+                                "max-w-xs sm:max-w-md lg:max-w-xl rounded-xl p-3 px-4 shadow-sm break-words",
                                 message.role === "user"
                                   ? "bg-primary text-primary-foreground"
                                   : "bg-muted"
@@ -268,7 +278,7 @@ export default function ClientPage() {
                         ))
                       )}
                       {isReplying && (
-                         <div className="flex items-start gap-4 animate-in fade-in">
+                         <div className="flex items-start gap-2 sm:gap-4 animate-in fade-in">
                            <Avatar className="h-8 w-8 border">
                               <AvatarImage src={getAvatarUrl(selectedModel?.id || aiModels[0].id)} data-ai-hint={getAvatarHint(selectedModel?.id || aiModels[0].id)} />
                               <AvatarFallback><Bot size={16}/></AvatarFallback>
@@ -281,7 +291,7 @@ export default function ClientPage() {
                       )}
                     </div>
                   </ScrollArea>
-                  <div className="p-4 border-t relative">
+                  <div className="p-2 sm:p-4 border-t relative">
                     <form onSubmit={handleSendMessage}>
                       <Textarea
                         value={input}
@@ -291,7 +301,7 @@ export default function ClientPage() {
                             ? `Ask ${selectedModel.name} about ${selectedConsultant.name}...`
                             : "Select a mode and model to start..."
                         }
-                        className="pr-20"
+                        className="pr-12 sm:pr-14"
                         rows={1}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" && !e.shiftKey) {
@@ -303,7 +313,7 @@ export default function ClientPage() {
                       <Button
                         type="submit"
                         size="icon"
-                        className="absolute right-6 bottom-6"
+                        className="absolute right-3 sm:right-6 bottom-3 sm:bottom-6 h-8 w-8 sm:h-10 sm:w-10"
                         disabled={!input.trim() || isReplying}
                       >
                         <ArrowUp className="h-4 w-4" />
