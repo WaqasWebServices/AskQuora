@@ -281,7 +281,6 @@ const MainContent = ({
         <p>&copy; {new Date().getFullYear()} AskQuora. All rights reserved.</p>
         <div className="flex gap-4">
           <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
-          <Link href="/admin" className="hover:text-foreground">Admin Login</Link>
         </div>
       </div>
     </footer>
